@@ -11,8 +11,10 @@ pub fn serialize_row<T: Sized>(src: &T) -> &[u8] {
 }
 
 fn main() {
+    //创建存放图片的位置
     let nway = fs::create_dir("./pic");
     let way = "./pic";
+    
     let mut capturer = Capturer::new(0).unwrap();
 
     let (w, h) = capturer.geometry();
