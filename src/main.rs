@@ -14,7 +14,7 @@ fn main() {
     //创建存放图片的位置
     let nway = fs::create_dir("./pic");
     let way = "./pic";
-    
+
     let mut capturer = Capturer::new(0).unwrap();
 
     let (w, h) = capturer.geometry();
@@ -89,7 +89,7 @@ fn save_to_file(file: &str, rgba: &[u8], w: i32, h: i32) {
 
     use std::fs::File;
     use std::io::Write;
-
+    //保存图片
     let mut file = File::create(file).expect("create failed");
     file.write_all(&data[..]).expect("write failed");
 }
