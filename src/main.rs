@@ -1,4 +1,5 @@
 use captrs::*;
+use std::fs;
 use shuteye::sleep;
 use std::time::Duration;
 use winapi::um::wingdi::{BITMAPFILEHEADER, BITMAPINFOHEADER};
@@ -10,6 +11,8 @@ pub fn serialize_row<T: Sized>(src: &T) -> &[u8] {
 }
 
 fn main() {
+    let nway = fs::create_dir("./pic");
+    let way = "./pic";
     let mut capturer = Capturer::new(0).unwrap();
 
     let (w, h) = capturer.geometry();
@@ -36,7 +39,7 @@ fn main() {
         }
 
         save_to_file(
-            format!("{}.bmp", i).as_str(),
+            format!("./pic/{}.bmp", i).as_str(),
             &buf[..],
             (w) as i32,
             (h) as i32,
