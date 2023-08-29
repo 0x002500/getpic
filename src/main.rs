@@ -1,6 +1,7 @@
 use captrs::*;
-use std::fs;
+use rand::Rng;
 use shuteye::sleep;
+use std::fs;
 use std::time::Duration;
 use winapi::um::wingdi::{BITMAPFILEHEADER, BITMAPINFOHEADER};
 
@@ -10,47 +11,7 @@ pub fn serialize_row<T: Sized>(src: &T) -> &[u8] {
     }
 }
 
-fn main() {
-    //创建存放图片的位置
-    let nway = fs::create_dir("./pic");
-    let way = "./pic";
-
-    let mut capturer = Capturer::new(0).unwrap();
-
-    let (w, h) = capturer.geometry();
-
-    for i in 1..10 {
-        let ps = capturer.capture_frame();
-        if ps.is_err() {
-            println!("{:?}", ps.err());
-            continue;
-        }
-        let ps = ps.unwrap();
-
-        let mut buf = vec![];
-
-        // 因为图片是倒着的，要水平翻转一下
-        for y in (0..h).rev() {
-            for x in 0..w {
-                let Bgr8 { r, g, b, a } = ps[(y * w + x) as usize];
-                buf.push(b);
-                buf.push(g);
-                buf.push(r);
-                // buf.push(a);
-            }
-        }
-
-        save_to_file(
-            format!("./pic/{}.bmp", i).as_str(),
-            &buf[..],
-            (w) as i32,
-            (h) as i32,
-        );
-
-        sleep(Duration::from_millis(1000 / 60));
-    }
-}
-
+//定义保存图片的函数
 fn save_to_file(file: &str, rgba: &[u8], w: i32, h: i32) {
     let mut data: Vec<u8> = vec![];
 
@@ -92,4 +53,50 @@ fn save_to_file(file: &str, rgba: &[u8], w: i32, h: i32) {
     //保存图片
     let mut file = File::create(file).expect("create failed");
     file.write_all(&data[..]).expect("write failed");
+}
+
+fn main() {
+    //创建存放图片的位置
+    let image_path = fs::create_dir("./pic");
+
+    let mut capturer = Capturer::new(0).unwrap();
+    let (w, h) = capturer.geometry();
+
+    for i in 1..1000 {
+        //创建随机数对象
+        let mut rng = rand::thread_rng();
+        //生成随机数
+        let mut sleep_time = rng.gen_range(1..=5);
+
+        let ps = capturer.capture_frame();
+        if ps.is_err() {
+            println!("{:?}", ps.err());
+            continue;
+        }
+        let ps = ps.unwrap();
+
+        let mut buf = vec![];
+
+        // 因为图片是倒着的，要水平翻转一下
+        for y in (0..h).rev() {
+            for x in 0..w {
+                let Bgr8 { r, g, b, a } = ps[(y * w + x) as usize];
+                buf.push(b);
+                buf.push(g);
+                buf.push(r);
+                // buf.push(a);
+            }
+        }
+
+        //保存下来
+        save_to_file(
+            format!("./pic/{}.bmp", i).as_str(),
+            &buf[..],
+            (w) as i32,
+            (h) as i32,
+        );
+
+        //截完一张之后等待随机秒（1~5秒）
+        sleep(Duration::from_millis(sleep_time));
+    }
 }

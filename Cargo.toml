@@ -7,5 +7,6 @@ edition = "2021"
 
 [dependencies]
 captrs = "0.3.1"
+rand = "0.8.5"
 shuteye = "0.3.3"
 winapi = "0.3.9"
