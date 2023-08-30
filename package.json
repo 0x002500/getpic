@@ -1,21 +1,25 @@
 {
   "name": "getpic",
-  "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "private": true,
   "scripts": {
-    "dev": "vite",
     "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "dev": "vite",
+    "preview": "vite preview",
+    "tauri:build": "vue-cli-service tauri:build",
+    "tauri:serve": "vue-cli-service tauri:serve"
   },
   "dependencies": {
+    "@tauri-apps/api": "^1.4.0",
     "vue": "^3.3.4"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^1.4.0",
-    "@vitejs/plugin-vue": "^4.2.3",
+    "@vitejs/plugin-vue": "^4.3.4",
     "typescript": "^5.0.2",
     "vite": "^4.4.5",
+    "vue-cli-plugin-tauri": "~1.0.0",
     "vue-tsc": "^1.8.5"
-  }
+  },
+  "type": "module"
 }
