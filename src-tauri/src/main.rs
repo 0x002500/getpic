@@ -7,7 +7,7 @@ use screenshots::Screen;
 fn getpic_core() -> bool{
     let screens = Screen::all().unwrap();
 
-    for i in 1..5 {
+    for i in 1..10 {
         for screen in &screens {
             let mut image = screen.capture().unwrap();
             image.save(format!("{}.png", i)).unwrap();
