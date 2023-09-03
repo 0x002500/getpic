@@ -11,7 +11,7 @@ import { invoke } from '@tauri-apps/api'
 <script setup lang="js">
 function getValue() {
   // 获取输入框元素
-  var inputElement = document.getElementById("nos");
+  var inputElement: any = document.getElementById("nos");
   // 获取输入框的值
   var inputValue = inputElement.value;
   // 将输入框的值赋值给其他变量
