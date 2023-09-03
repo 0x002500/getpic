@@ -15,6 +15,6 @@ function getValue() {
   // 获取输入框的值
   var inputValue: any = inputElement.value;
   // 将输入框的值赋值给其他变量
-  var m = inputValue;
+  var m: any = inputValue;
 }
 </script>
