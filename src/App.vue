@@ -17,7 +17,7 @@ import { invoke } from '@tauri-apps/api'
                 password: ''
             }
         },
-        methods: {c
+        methods: {
             login() {
                    console.log(this.username)
                    console.log(this.password)
