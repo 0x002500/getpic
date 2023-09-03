@@ -8,7 +8,7 @@ import { invoke } from '@tauri-apps/api'
   <button @click="invoke('getpic_core', { n: m })">Run!</button>
 </template>
 
-<script setup lang="ts">
+<script setup lang="js">
 function getValue() {
   // 获取输入框元素
   var inputElement = document.getElementById("nos");
