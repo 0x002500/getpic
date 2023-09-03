@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "@tauri-apps/api": "^1.4.0",
-    "vue": "^3.3.4"
+    "add": "^2.0.6",
+    "vue": "^3.3.4",
+    "yarn": "^1.22.19"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^1.4.0",
