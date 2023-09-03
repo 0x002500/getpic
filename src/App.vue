@@ -13,7 +13,7 @@ function getValue() {
   // 获取输入框元素
   var inputElement: any = document.getElementById("nos");
   // 获取输入框的值
-  var inputValue = inputElement.value;
+  var inputValue: any = inputElement.value;
   // 将输入框的值赋值给其他变量
   var m = inputValue;
 }
