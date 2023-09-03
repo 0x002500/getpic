@@ -4,5 +4,6 @@ import { invoke } from '@tauri-apps/api'
 
 <template>
   <h1>GetPic</h1>
-  <button @click = "invoke('getpic_core', {n: '5'})">Run!</button>
+  <input type="number" id="number of shots" name="number of shots" size="100" />
+  <button @click = "invoke('getpic_core', {n: m})">Run!</button>
 </template>
