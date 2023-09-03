@@ -4,10 +4,10 @@ use screenshots::Screen;
 #[cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 #[tauri::command]
-fn getpic_core() -> bool{
+fn getpic_core(n: i32) -> bool{
     let screens = Screen::all().unwrap();
 
-    for i in 1..10 {
+    for i in 1..n {
         for screen in &screens {
             let mut image = screen.capture().unwrap();
             image.save(format!("{}.png", i)).unwrap();
