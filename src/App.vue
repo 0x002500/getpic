@@ -8,7 +8,7 @@ import { invoke } from '@tauri-apps/api'
     <button @click="register()">Run!</button>
   </template>
   
-  <script>
+<script lang="ts">
   export default {
     data() {
       return {
