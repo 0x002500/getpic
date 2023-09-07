@@ -3,7 +3,7 @@ import { invoke } from '@tauri-apps/api'
 </script>
 
 <template>
-    <h1>GetPic</h1>
+    <h1 class="text-3xl font-bold underline">GetPic</h1>
     <input type="number" name="number of shots" size="100" v-model="nos" />
     <button @click="register()">Run!</button>
   </template>
